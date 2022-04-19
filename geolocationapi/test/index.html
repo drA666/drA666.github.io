@@ -25,6 +25,46 @@
         </span> 
       </aside> 
 <main class="page"> <div class="theme-default-content content__default">
+
+
+
+
+<h2 id="автоматизація-тестування-сервісу"><a href="#автоматизація-тестування-сервісу" class="header-anchor">#</a> Автоматизація тестування сервісу</h2> <p> Для тестування API сервісу скористаємося тестовим фреймворком <a href="https://www.npmjs.com/package/jest" target="_blank" rel="noopener noreferrer">jest<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> та бібліотекою <a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener noreferrer">axios<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, яка дозволяє програмно ініціювать HTTP-запити.</p> <p>Встановимо необхідні залежності за допомогою команди:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> i --save-dev jest axios
+</code></pre></div><p>В файлі <code>package.json</code> додамо скрипт для тестування:</p> <div class="language-json extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;express-restfull&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1.0.0&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;main&quot;</span><span class="token operator">:</span> <span class="token string">&quot;index.js&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;test&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jest&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;start&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node server&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;nodemon server&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;author&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;license&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ISC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;dependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;body-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.19.0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;cookie-parser&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^1.4.5&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;express&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;lodash&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^4.17.21&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^8.3.2&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;devDependencies&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;axios&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^0.21.1&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;jest&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^27.0.6&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;nodemon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;^2.0.9&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div>
+
+
+
+<p>Імпортуємо змінну <code>server</code> з нашого сервера (зараз сервер запускається на порту 8080). Імпортуємо <code>axios</code>. Визначаємо посилання на кінцеву точку нашого сервісу та розпочинаємо тестування.</p> <p>По-перше, за допомогою <code>afterAll</code> визначаємо обробник , який <code>jest</code> запустить після виконання всіх тестів.</p> <p>По-друге, за допомогою <code>describe</code> визначаємо три набори тестів:</p> <ul><li>для перевірки зчитування даних пристроїв(<code>read entities</code>);</li> <li>для перевірки CRUD-інтерфейса в робочому процесі (<code>test CRUD</code>).</li><li>для перевірки зчитування даних координат(<code>read entities</code>);</li> </ul> <p>Набір тестів <code>read entities</code> складається з 5 простих тестів. Оскільки операція виконання HTTP-запитів є асинхронною, то <code>callback</code>, який визначається в функції <code>test</code>, повинен повертати <code>promise</code>. Цей <code>promise</code>, наприклад для тесту <code>read complete collection without options</code>, формується наступним чином.</p> <ol><li>За допомогою <code>axios</code> здійснюємо GET-запит за адресою <a href="http://localhost:8080/api/presidents" target="_blank" rel="noopener noreferrer">http://localhost:8080/api/devices<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> (<code>axios.get</code> повертає <code>promise</code>)</li> <li>Визначаємо для цього промісу обробник <code>then</code>, який активується, коли проміс спрацьовує (<code>axios.get</code> повертає результат запиту). Обробник <code>then</code> також повертає <code>promise</code>.</li> <li>В цьому обробнику за допомогою <code>expect(&lt;testedValue&gt;).toBe(&lt;expectedValue&gt;)</code> перевіряємо, що довжина колекції дорівнює 3. тобто ми зчитуємо всю колекцію даних.</li></ol> <p>Аналогічно побудовані інші тести з цього набору.</p> <p>Тестовий набір <code>test CRUD</code> містить один тест, який реалізує наступний робочий процес.</p> <ol><li>Створюється новий примірник даних. Його унікальний ідентифікатор запам'ятовується в змінній <code>entityId</code>, яка використовується для перевірки результатів інших операцій.</li> <li>Зчитується вся колекція, перевіряється її довжина.</li> <li>Примірник даних оновлюється.</li> <li>Він зчитується та перевіряється.</li> <li>Примірник даних видаляється.</li> <li>Знову зчитується вся колекція та перевіряється її довжина.</li></ol> <p>Результати тестування нашого сервісу наведені нижче.</p> 
+
+<img src="https://dra666.github.io/img/test.png">
+
+
 </div></main>
   </body>
 </html>
